@@ -1,5 +1,4 @@
 from fastapi import WebSocket, FastAPI, WebSocketDisconnect
-from face_checker import get_direction
 
 app = FastAPI()
 
@@ -29,3 +28,7 @@ async def websocket_endpoint(websocket: WebSocket):
             await manager.send_message(direction, websocket)
     except WebSocketDisconnect:
         manager.disconnect(websocket)
+
+@app.get("/")
+async def root():
+    return "Application working"
