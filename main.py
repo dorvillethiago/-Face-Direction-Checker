@@ -1,5 +1,4 @@
-from fastapi import WebSocket
-from fastapi import FastAPI
+from fastapi import WebSocket, FastAPI, WebSocketDisconnect
 from face_checker import get_direction
 
 app = FastAPI()
@@ -23,7 +22,10 @@ manager = ConnectionManager()
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
     await manager.connect(websocket)
-    while True:
-        data = await websocket.receive_bytes()
-        direction = get_direction(data)
-        await manager.send_message(direction, websocket)
+    try:
+        while True:
+            data = await websocket.receive_bytes()
+            direction = get_direction(data)
+            await manager.send_message(direction, websocket)
+    except WebSocketDisconnect:
+        manager.disconnect(websocket)
