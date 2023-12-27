@@ -1,4 +1,5 @@
 from fastapi import WebSocket, FastAPI, WebSocketDisconnect
+from face_checker import get_direction
 
 app = FastAPI()
 
