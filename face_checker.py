@@ -53,13 +53,13 @@ def get_direction(base64string):
             y = angles[1] * 360
 
             if y < -10:
-                text = "Down"
-            elif y > 10:
                 text = "Up"
+            elif y > 10:
+                text = "Down"
             elif x < -10:
-                text = "Right"
-            elif x > 10:
                 text = "Left"
+            elif x > 10:
+                text = "Right"
             else:
                 text = "Forward"
             print(text)
