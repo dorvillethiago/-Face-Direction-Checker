@@ -7,8 +7,9 @@ import numpy as np
 mp_face_mesh = mp.solutions.face_mesh
 face_mesh = mp_face_mesh.FaceMesh(min_detection_confidence=0.5, min_tracking_confidence=0.5)
 
-def get_direction(base64):
-    image_array = np.frombuffer(base64, dtype=np.uint8)
+def get_direction(base64string):
+    base64bytes = base64.b64decode(base64string)
+    image_array = np.frombuffer(base64bytes, dtype=np.uint8)
     image = cv2.imdecode(image_array, cv2.IMREAD_COLOR)
     image = cv2.cvtColor(cv2.flip(image, 1), cv2.COLOR_BGR2RGB)
     image.flags.writeable = False
