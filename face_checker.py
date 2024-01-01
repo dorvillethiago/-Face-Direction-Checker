@@ -62,5 +62,6 @@ def get_direction(base64string):
                 text = "Up"
             else:
                 text = "Forward"
+            print(text)
             return text
     
