@@ -24,7 +24,7 @@ async def websocket_endpoint(websocket: WebSocket):
     await manager.connect(websocket)
     try:
         while True:
-            data = await websocket.receive_text
+            data = await websocket.receive_text()
             direction = get_direction(data)
             await manager.send_message(direction, websocket)
     except WebSocketDisconnect:
