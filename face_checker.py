@@ -64,4 +64,5 @@ def get_direction(base64string):
                 text = "Forward"
             print(text)
             return text
-    
+    else:
+        return "No face detected"
